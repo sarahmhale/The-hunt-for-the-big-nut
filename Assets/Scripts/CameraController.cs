@@ -4,30 +4,39 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-	//Position of the object in the world
 	public Transform target;
-	//How far from the player
 	public Vector3 offset;
 	public float rotateSpeed;
-	// Use this for initialization
+	public Transform pivot;
+
 	void Start () {
 		offset = target.position -transform.position;
+		pivot.position = target.position;
+		pivot.parent = target;
+		Cursor.lockState = CursorLockMode.Locked;
+	}
+
+	void rotatePivot ()
+	{
+		float vertical = -(Input.GetAxis ("Mouse Y") * rotateSpeed);
+		pivot.Rotate (vertical, 0, 0);
 	}
 
 	void rotateTarget ()
 	{
 		float horizontal = Input.GetAxis ("Mouse X") * rotateSpeed;
-		//float vertical = -(Input.GetAxis ("Mouse Y") * rotateSpeed);
 		target.Rotate (0, horizontal, 0);
-	}	
+	}
 
-		
-	// Update is called once per frame
-	void Update () {
-		rotateTarget ();
-		Quaternion rotation = Quaternion.Euler (target.eulerAngles.x,target.eulerAngles.y,0);
+	void rotateCamera ()
+	{
+		Quaternion rotation = Quaternion.Euler (pivot.eulerAngles.x,target.eulerAngles.y,0);
 		transform.position = target.position - (rotation * offset);
 		transform.LookAt (target);
-		
+	}
+	void Update () {
+		rotateTarget ();
+		rotatePivot ();
+		rotateCamera ();
 	}
 }
