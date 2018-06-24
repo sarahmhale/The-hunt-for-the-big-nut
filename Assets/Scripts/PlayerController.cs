@@ -15,23 +15,23 @@ public class PlayerController : MonoBehaviour
 	void Start ()
 	{
 		characterController = GetComponent<CharacterController> ();
+	}
 
+	void jump(){
+		moveDirection.y = 0f;
+		if(Input.GetButtonDown ("Jump")){
+			moveDirection.y = jumpForce;	
+		}
 	}
 		
 	// Update is called once per frame
 	void Update ()
 	{
 
-		moveDirection = new Vector3 (
-			Input.GetAxis ("Horizontal") * moveSpeed,
-			moveDirection.y,
-			Input.GetAxis ("Vertical") * moveSpeed);
+		moveDirection = (transform.forward * Input.GetAxis ("Vertical")*moveSpeed);
 
 		if (characterController.isGrounded) {
-			moveDirection.y = 0f;
-			if(Input.GetButtonDown ("Jump")){
-				moveDirection.y = jumpForce;	
-			}
+			jump (); 
 		}
 
 		moveDirection.y = moveDirection.y + (gravityScale * Physics.gravity.y* Time.deltaTime);
