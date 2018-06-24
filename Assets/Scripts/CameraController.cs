@@ -34,9 +34,9 @@ public class CameraController : MonoBehaviour {
 		transform.position = target.position - (rotation * offset);
 		transform.LookAt (target);
 	}
-	void Update () {
+	void LateUpdate () {
 		rotateTarget ();
-		rotatePivot ();
+		//rotatePivot ();
 		rotateCamera ();
 	}
 }
