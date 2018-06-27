@@ -1,42 +1,74 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-	public Transform target;
-	public Vector3 offset;
-	public float rotateSpeed;
-	public Transform pivot;
+	private Transform xForm_Camera;
+	private Transform xForm_Parent;
+
+	protected Vector3 localRotation;
+	protected float cameraDistance = 10f;
+
+	public float mouseSensitivity = 4f;
+	public float scrollSensitivity =2f;
+	public float orbitSpeed = 10f;
+	public float scrollSpeed = 6f; 
+
+	public bool cameraDisabled = false;
 
 	void Start () {
-		offset = target.position -transform.position;
-		pivot.position = target.position;
-		pivot.parent = target;
-		Cursor.lockState = CursorLockMode.Locked;
+		this.xForm_Camera = this.transform;
+		this.xForm_Parent = this.transform.parent; 
 	}
 
-	void rotatePivot ()
-	{
-		float vertical = -(Input.GetAxis ("Mouse Y") * rotateSpeed);
-		pivot.Rotate (vertical, 0, 0);
+	void rotate(){
+		if (Input.GetAxis ("Mouse X") != 0 || Input.GetAxis ("Mouse Y") != 0) {
+			localRotation.x += Input.GetAxis ("Mouse X") * mouseSensitivity;
+			localRotation.y += Input.GetAxis ("Mouse Y") * mouseSensitivity;
+			localRotation.y= Mathf.Clamp(localRotation.y, 0f,90f);
+		}
 	}
 
-	void rotateTarget ()
-	{
-		float horizontal = Input.GetAxis ("Mouse X") * rotateSpeed;
-		target.Rotate (0, horizontal, 0);
+	void zoom(){
+		if (Input.GetAxis ("Mouse ScrollWheel")!= 0f) {
+			float scrollAmount = Input.GetAxis ("Mouse ScrollWheel") *scrollSpeed;
+
+			//scroll fast when far way from target and slower when close
+			scrollAmount *= (this.cameraDistance * 0.3f);
+
+			this.cameraDistance += scrollAmount * -1f;
+			this.cameraDistance = Mathf.Clamp (this.cameraDistance, 1.5f, 100f);
+		}
 	}
 
-	void rotateCamera ()
-	{
-		Quaternion rotation = Quaternion.Euler (pivot.eulerAngles.x,target.eulerAngles.y,0);
-		transform.position = target.position - (rotation * offset);
-		transform.LookAt (target);
+	void cameraTransform(){
+		Quaternion QT = Quaternion.Euler(localRotation.y, localRotation.x, 0);
+		this.xForm_Parent.rotation = Quaternion.Lerp (
+			this.xForm_Parent.rotation, 
+			QT, 
+			Time.deltaTime * orbitSpeed);
+
+		if (this.xForm_Camera.localRotation.z != this.cameraDistance * -1f) {
+
+			this.xForm_Camera.localPosition = new Vector3 (0f, 0f, Mathf.Lerp (
+				this.xForm_Camera.localPosition.z,
+				this.cameraDistance * -1f, 
+				Time.deltaTime * scrollSpeed)
+			);
+		}
 	}
+
 	void LateUpdate () {
-		rotateTarget ();
-		//rotatePivot ();
-		rotateCamera ();
+		
+		if (Input.GetKeyDown (KeyCode.LeftShift)) {
+			cameraDisabled = !cameraDisabled;
+		}
+
+		if (!cameraDisabled) {
+			rotate ();
+			zoom ();
+		}
+
+		cameraTransform ();
+
 	}
 }
