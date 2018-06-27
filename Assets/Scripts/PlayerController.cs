@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 	public float gravityScale;
 	public CharacterController characterController;
 	private Vector3 moveDirection;
+	public Animator animator;
 
 	// Use this for initialization
 	void Start ()
@@ -39,5 +40,9 @@ public class PlayerController : MonoBehaviour
 
 		moveDirection.y = moveDirection.y + (gravityScale * Physics.gravity.y* Time.deltaTime);
 		characterController.Move (moveDirection * Time.deltaTime);
+
+		animator.SetBool ("grounded", characterController.isGrounded);
+		animator.SetFloat("speed", (Mathf.Abs(Input.GetAxis ("Vertical"))));
+
 	}
 }
