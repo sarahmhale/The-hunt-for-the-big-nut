@@ -5,6 +5,7 @@ using UnityEngine;
 public class ApplePickup : MonoBehaviour {
 
 	public int value = 1;
+	public GameObject pickupEffect;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +21,7 @@ public class ApplePickup : MonoBehaviour {
 	private void OnTriggerEnter(Collider other){
 		if (other.tag == "Player") {
 			FindObjectOfType<GameManager> ().addApples (value);
+			Instantiate (pickupEffect, transform.position, transform.rotation);
 			Destroy (gameObject);
 		}
 	}

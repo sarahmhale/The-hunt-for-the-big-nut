@@ -270,6 +270,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 1
+  pickupEffect: {fileID: 1426710879758230, guid: 5627f715c12b14e71b6e2b7d7b0673ae,
+    type: 2}
 --- !u!205 &205624698064744684
 LODGroup:
   m_ObjectHideFlags: 1
