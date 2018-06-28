@@ -4,65 +4,40 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
-	public float moveSpeed;
-	public float jumpForce;
-	public float gravityScale;
-	private CharacterController characterController;
-	private Vector3 moveDirection;
+	public float speed = 6.0F;
+	public float jumpSpeed = 8.0F;
+	public float gravity = 20.0F;
+	private Vector3 moveDirection = Vector3.zero;
 	public Animator animator;
-
-	public float rotateSpeed;
-	public Transform pivot;
-
-
+	private CharacterController controller;
 
 	// Use this for initialization
 	void Start ()
 	{
-		characterController = GetComponent<CharacterController> ();
+		controller = GetComponent<CharacterController>();
 	}
-
-	void jump(){
-		moveDirection.y = 0f;
-		if(Input.GetButtonDown ("Jump")){
-			moveDirection.y = jumpForce;	
-		}
-	}
-		
-	void applyMovement(){
-		moveDirection.y = moveDirection.y + (gravityScale * Physics.gravity.y* Time.deltaTime);
-		characterController.Move (moveDirection * Time.deltaTime);
-	}
-
 	void animate(){
-		animator.SetBool ("grounded", characterController.isGrounded);
+		
+		animator.SetBool ("grounded", controller.isGrounded);
 		animator.SetFloat("speed", (Mathf.Abs(Input.GetAxis ("Vertical"))));
 	}
-		
-//	void rotatePlayer(){
-//		if(Input.GetAxis ("Vertical")!= 0|| Input.GetAxis("Horizontal")!= 0){
-//			transform.rotation = Quaternion.Euler (0f, 0f,pivot.rotation.eulerAngles.z);
-//		}
-//	}
 	// Update is called once per frame
 	void Update ()
 	{
-		float yStore = moveDirection.y;
-		moveDirection = (transform.forward * Input.GetAxis ("Vertical"))+
-			(transform.right * Input.GetAxis("Horizontal"));
-		moveDirection = moveDirection.normalized * moveSpeed;
-		moveDirection.y = yStore;
-
-		if (characterController.isGrounded) {
-			jump (); 
+		if (controller.isGrounded) {
+			moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+			if (moveDirection.sqrMagnitude > 1f) moveDirection = moveDirection.normalized;
+			moveDirection *= speed;
+			if (Input.GetButton ("Jump")) {
+				moveDirection.y = jumpSpeed;
+			}
 		}
-
-
-		applyMovement ();
-		//rotatePlayer();
+		moveDirection.y -= gravity * Time.deltaTime;
 		animate ();
+		controller.Move(moveDirection * Time.deltaTime);
+		Vector3 facingrotation = Vector3.Normalize(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")));
+		if (facingrotation != Vector3.zero)        
+			transform.forward = facingrotation;
 	
-
 	}
 }
