@@ -8,9 +8,14 @@ public class PlayerController : MonoBehaviour
 	public float moveSpeed;
 	public float jumpForce;
 	public float gravityScale;
-	public CharacterController characterController;
+	private CharacterController characterController;
 	private Vector3 moveDirection;
 	public Animator animator;
+
+	public float rotateSpeed;
+	public Transform pivot;
+
+
 
 	// Use this for initialization
 	void Start ()
@@ -25,6 +30,21 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 		
+	void applyMovement(){
+		moveDirection.y = moveDirection.y + (gravityScale * Physics.gravity.y* Time.deltaTime);
+		characterController.Move (moveDirection * Time.deltaTime);
+	}
+
+	void animate(){
+		animator.SetBool ("grounded", characterController.isGrounded);
+		animator.SetFloat("speed", (Mathf.Abs(Input.GetAxis ("Vertical"))));
+	}
+		
+//	void rotatePlayer(){
+//		if(Input.GetAxis ("Vertical")!= 0|| Input.GetAxis("Horizontal")!= 0){
+//			transform.rotation = Quaternion.Euler (0f, 0f,pivot.rotation.eulerAngles.z);
+//		}
+//	}
 	// Update is called once per frame
 	void Update ()
 	{
@@ -38,11 +58,11 @@ public class PlayerController : MonoBehaviour
 			jump (); 
 		}
 
-		moveDirection.y = moveDirection.y + (gravityScale * Physics.gravity.y* Time.deltaTime);
-		characterController.Move (moveDirection * Time.deltaTime);
 
-		animator.SetBool ("grounded", characterController.isGrounded);
-		animator.SetFloat("speed", (Mathf.Abs(Input.GetAxis ("Vertical"))));
+		applyMovement ();
+		//rotatePlayer();
+		animate ();
+	
 
 	}
 }
