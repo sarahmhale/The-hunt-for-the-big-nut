@@ -6,6 +6,7 @@ public class Patrol : MonoBehaviour {
 	public Transform[] patrolPoints;
 	public float moveSpeed;
 	public int value = 1;
+	public GameObject Player;
 
 	private int currentPointIndex = 0;
 	// Use this for initialization
@@ -14,10 +15,11 @@ public class Patrol : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter(Collider other){
-		Debug.Log ("Hello");
+		
 		if (other.tag == "Player") {
-			FindObjectOfType<GameManager> ().reduceLife (value);
-			//Instantiate (pickupEffect, transform.position, transform.rotation);
+			Player.GetComponent<PlayerController>().enabled = false;
+			
+			FindObjectOfType<GameManager> ().endGame ();
 			Destroy (gameObject);
 		}
 	}

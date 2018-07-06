@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 	public Animator animator;
 	private CharacterController controller;
 
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -38,7 +39,10 @@ public class PlayerController : MonoBehaviour
 		Vector3 facingrotation = Vector3.Normalize(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")));
 		if (facingrotation != Vector3.zero)        
 			transform.forward = facingrotation;
-	
+		if (transform.position.y < -1f) {
+			FindObjectOfType<GameManager> ().endGame ();
+		}
+
 	}
 
 }

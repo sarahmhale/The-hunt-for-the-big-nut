@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour {
 	public int totalNrApples;
@@ -9,6 +11,8 @@ public class GameManager : MonoBehaviour {
 
 	public int totalHealth = 1;
 	private int currentHealth;
+	private bool gameHasEnded = false;
+	public float restartDelay = 2f;
 
 	public Text applesText;
 
@@ -22,8 +26,23 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		
 	}
+
+	public void restartGame(){
+		gameHasEnded = false;
+		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
+
+	}
+
+	public void endGame(){
+
+		if (gameHasEnded == false) {
+			gameHasEnded = true;
+			Debug.Log ("Game Over");
+			Invoke ("restartGame", restartDelay);
+		}
+
+	}
 	public void reduceLife(int amountOfHealth){
-		Debug.Log ("inHere");
 		currentHealth -= amountOfHealth;
 		if (currentHealth == 0) {
 			Debug.Log("Dead");
