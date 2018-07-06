@@ -1734,7 +1734,7 @@ MonoBehaviour:
   speed: 6
   jumpSpeed: 8
   gravity: 20
-  animator: {fileID: 1911783832}
+  animator: {fileID: 1979514283}
 --- !u!23 &1911783835
 MeshRenderer:
   m_ObjectHideFlags: 0
