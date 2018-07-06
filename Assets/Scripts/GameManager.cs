@@ -9,17 +9,17 @@ public class GameManager : MonoBehaviour {
 	public int totalNrApples;
 	public int currentApples;
 
-	public int totalHealth = 1;
-	private int currentHealth;
+
 	private bool gameHasEnded = false;
 	public float restartDelay = 2f;
+
+	public GameObject bigApple;
 
 	public Text applesText;
 
 	// Use this for initialization
 	void Start () {
-		currentHealth = totalHealth;
-		
+		bigApple.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -42,15 +42,16 @@ public class GameManager : MonoBehaviour {
 		}
 
 	}
-	public void reduceLife(int amountOfHealth){
-		currentHealth -= amountOfHealth;
-		if (currentHealth == 0) {
-			Debug.Log("Dead");
-		}
-	}
 
 	public void addApples(int nrOfApples){
 		currentApples += nrOfApples;
 		applesText.text = "Apples: " + currentApples + "/" + totalNrApples;
+		if (currentApples == totalNrApples) {
+			bigApple.SetActive (true);
+		}
+
+		if (currentApples > totalNrApples) {
+			endGame ();
+		}
 	}
 }
