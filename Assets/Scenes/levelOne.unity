@@ -1387,6 +1387,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1113300418640796, guid: 70c20f2bbb06d486d91ee9dae05a9375, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 65075013417364610, guid: 70c20f2bbb06d486d91ee9dae05a9375,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70c20f2bbb06d486d91ee9dae05a9375, type: 2}
   m_IsPrefabParent: 0
@@ -1409,6 +1418,8 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 1393012409}
   - {fileID: 1779920779}
+  moveSpeed: 2
+  value: 1
 --- !u!1 &1651701322
 GameObject:
   m_ObjectHideFlags: 0
@@ -2205,8 +2216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49962380531584472b8c9add004bb3a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalNrApples: 4
+  totalNrApples: 0
   currentApples: 0
+  totalHealth: 1
   applesText: {fileID: 1410461843}
 --- !u!4 &2043001623
 Transform:

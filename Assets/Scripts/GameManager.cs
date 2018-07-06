@@ -4,12 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
-	public int TotalNrApples;
+	public int totalNrApples;
 	public int currentApples;
+
+	public int totalHealth = 1;
+	private int currentHealth;
+
 	public Text applesText;
 
 	// Use this for initialization
 	void Start () {
+		currentHealth = totalHealth;
 		
 	}
 	
@@ -17,9 +22,16 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		
 	}
+	public void reduceLife(int amountOfHealth){
+		Debug.Log ("inHere");
+		currentHealth -= amountOfHealth;
+		if (currentHealth == 0) {
+			Debug.Log("Dead");
+		}
+	}
 
 	public void addApples(int nrOfApples){
-		this.currentApples += nrOfApples;
-		applesText.text = "Apples: " + currentApples + "/" + TotalNrApples;
+		currentApples += nrOfApples;
+		applesText.text = "Apples: " + currentApples + "/" + totalNrApples;
 	}
 }

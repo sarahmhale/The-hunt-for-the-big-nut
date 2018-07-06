@@ -52,13 +52,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\ApplePickup.cs" />
-     <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\DestroyOverTime.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Patrol.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerFollow.cs" />
-     <Compile Include="Assets\Scripts\RotateTowardsMovement.cs" />
      <None Include="Assets\Models\Fruit Pack\Shaders\ToonLitTransparent.shader" />
      <None Include="Assets\Models\Fruit Pack\Shaders\ToonLit.shader" />
  <Reference Include="UnityEngine.UI">
