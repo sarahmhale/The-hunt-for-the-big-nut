@@ -30,9 +30,15 @@ public class GameManager : MonoBehaviour {
 		SceneManager.LoadScene ("GameOver");
 	}
 
+
+
 	public void endGame(){
 		Debug.Log ("Game Over");
 		Invoke ("restartGame", restartDelay);
+	}
+
+	public void foundTheBigApple(){
+		SceneManager.LoadScene ("FinishedGame");
 	}
 
 	public void addApples(int nrOfApples){
@@ -43,7 +49,7 @@ public class GameManager : MonoBehaviour {
 		}
 
 		if (currentApples > totalNrApples) {
-			endGame ();
+			foundTheBigApple ();
 		}
 	}
 }
