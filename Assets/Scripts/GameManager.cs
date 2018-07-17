@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour {
 	public int currentApples;
 
 
-	private bool gameHasEnded = false;
 	public float restartDelay = 2f;
 
 	public GameObject bigApple;
@@ -28,19 +27,12 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void restartGame(){
-		gameHasEnded = false;
-		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
-
+		SceneManager.LoadScene ("GameOver");
 	}
 
 	public void endGame(){
-
-		if (gameHasEnded == false) {
-			gameHasEnded = true;
-			Debug.Log ("Game Over");
-			Invoke ("restartGame", restartDelay);
-		}
-
+		Debug.Log ("Game Over");
+		Invoke ("restartGame", restartDelay);
 	}
 
 	public void addApples(int nrOfApples){
