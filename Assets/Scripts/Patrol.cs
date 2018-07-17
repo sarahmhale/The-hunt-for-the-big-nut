@@ -7,6 +7,7 @@ public class Patrol : MonoBehaviour {
 	public float moveSpeed;
 	public int value = 1;
 	public GameObject Player;
+	public Animator animator;
 
 	private int currentPointIndex = 0;
 	// Use this for initialization
@@ -18,7 +19,7 @@ public class Patrol : MonoBehaviour {
 		
 		if (other.tag == "Player") {
 			Player.GetComponent<PlayerController>().enabled = false;
-			
+			animator.SetBool ("dead",true);
 			FindObjectOfType<GameManager> ().endGame ();
 			Destroy (gameObject);
 		}

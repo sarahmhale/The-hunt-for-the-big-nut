@@ -1281,6 +1281,11 @@ Prefab:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1911783831}
+    - target: {fileID: 114473009876508468, guid: 70c20f2bbb06d486d91ee9dae05a9375,
+        type: 2}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1979514283}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70c20f2bbb06d486d91ee9dae05a9375, type: 2}
   m_IsPrefabParent: 0
@@ -1839,22 +1844,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1113300418640796, guid: 70c20f2bbb06d486d91ee9dae05a9375, type: 2}
-      propertyPath: m_Name
-      value: Enemy (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4922897257227520, guid: 70c20f2bbb06d486d91ee9dae05a9375, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4922897257227520, guid: 70c20f2bbb06d486d91ee9dae05a9375, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4922897257227520, guid: 70c20f2bbb06d486d91ee9dae05a9375, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114473009876508468, guid: 70c20f2bbb06d486d91ee9dae05a9375,
         type: 2}
       propertyPath: patrolPoints.Array.data[0]
@@ -1872,8 +1861,12 @@ Prefab:
       objectReference: {fileID: 1911783831}
     - target: {fileID: 114473009876508468, guid: 70c20f2bbb06d486d91ee9dae05a9375,
         type: 2}
-      propertyPath: moveSpeed
-      value: 5
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1979514283}
+    - target: {fileID: 1113300418640796, guid: 70c20f2bbb06d486d91ee9dae05a9375, type: 2}
+      propertyPath: m_Name
+      value: Enemy (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70c20f2bbb06d486d91ee9dae05a9375, type: 2}
@@ -1902,7 +1895,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 980153565}
   m_LocalRotation: {x: -4.3297803e-17, y: 0.70710677, z: 0.7071069, w: -4.329781e-17}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.0000000745058, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1770011548}
@@ -1911,7 +1904,7 @@ Transform:
   - {fileID: 2058340879}
   m_Father: {fileID: 1979514284}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 179.99998}
 --- !u!1 &1036260667
 GameObject:
   m_ObjectHideFlags: 0
@@ -3204,22 +3197,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1113300418640796, guid: 70c20f2bbb06d486d91ee9dae05a9375, type: 2}
-      propertyPath: m_Name
-      value: Enemy (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4922897257227520, guid: 70c20f2bbb06d486d91ee9dae05a9375, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.9999998
-      objectReference: {fileID: 0}
-    - target: {fileID: 4922897257227520, guid: 70c20f2bbb06d486d91ee9dae05a9375, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.9999998
-      objectReference: {fileID: 0}
-    - target: {fileID: 4922897257227520, guid: 70c20f2bbb06d486d91ee9dae05a9375, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.9999998
-      objectReference: {fileID: 0}
     - target: {fileID: 114473009876508468, guid: 70c20f2bbb06d486d91ee9dae05a9375,
         type: 2}
       propertyPath: patrolPoints.Array.data[0]
@@ -3237,8 +3214,12 @@ Prefab:
       objectReference: {fileID: 1911783831}
     - target: {fileID: 114473009876508468, guid: 70c20f2bbb06d486d91ee9dae05a9375,
         type: 2}
-      propertyPath: moveSpeed
-      value: 6
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1979514283}
+    - target: {fileID: 1113300418640796, guid: 70c20f2bbb06d486d91ee9dae05a9375, type: 2}
+      propertyPath: m_Name
+      value: Enemy (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70c20f2bbb06d486d91ee9dae05a9375, type: 2}
@@ -4459,6 +4440,11 @@ Prefab:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1911783831}
+    - target: {fileID: 114473009876508468, guid: 70c20f2bbb06d486d91ee9dae05a9375,
+        type: 2}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1979514283}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70c20f2bbb06d486d91ee9dae05a9375, type: 2}
   m_IsPrefabParent: 0
