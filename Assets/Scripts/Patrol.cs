@@ -25,8 +25,8 @@ public class Patrol : MonoBehaviour {
 			moveSpeed * Time.deltaTime
 		);
 	}
-	// Update is called once per frame
-	void Update () 
+
+	void setPointToMoveTowards ()
 	{
 		if (transform.position == patrolPoints [currentPointIndex].position) {
 			currentPointIndex++;
@@ -34,7 +34,11 @@ public class Patrol : MonoBehaviour {
 				currentPointIndex = 0;
 			}
 		}
-
+	}
+	// Update is called once per frame
+	void Update () 
+	{
+		setPointToMoveTowards ();
 		move ();
 	}
 }

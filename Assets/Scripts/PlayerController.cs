@@ -31,25 +31,42 @@ public class PlayerController : MonoBehaviour
 			FindObjectOfType<GameManager> ().endGame ();
 		}
 	}
-	// Update is called once per frame
-	void Update ()
+
+	void rotate()
+	{
+		Vector3 facingrotation = Vector3.Normalize(
+			new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"))
+		);
+		if (facingrotation != Vector3.zero)        
+			transform.forward = facingrotation;
+	}
+
+	void jump()
+	{
+		if (Input.GetButton ("Jump")) {
+			moveDirection.y = jumpSpeed;
+		}
+	}
+
+	void move()
 	{
 		if (controller.isGrounded) {
-			moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-			if (moveDirection.sqrMagnitude > 1f) moveDirection = moveDirection.normalized;
+			moveDirection = new Vector3(Input.GetAxis("Horizontal"),0, Input.GetAxis("Vertical"));
 			moveDirection *= speed;
-			if (Input.GetButton ("Jump")) {
-				moveDirection.y = jumpSpeed;
-			}
+			jump ();
 		}
 
 		moveDirection.y -= gravity * Time.deltaTime;
-		animate ();
 		controller.Move(moveDirection * Time.deltaTime);
-		Vector3 facingrotation = Vector3.Normalize(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")));
-		if (facingrotation != Vector3.zero)        
-			transform.forward = facingrotation;
-		if (transform.position.y < -1f) {
+	}
+	// Update is called once per frame
+	void Update ()
+	{
+		move ();
+		animate ();
+		rotate ();
+		if (transform.position.y < -1f)
+		{
 			FindObjectOfType<GameManager> ().endGame ();
 		}
 
