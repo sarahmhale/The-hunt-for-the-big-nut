@@ -17,10 +17,19 @@ public class PlayerController : MonoBehaviour
 	{
 		controller = GetComponent<CharacterController>();
 	}
-	void animate(){
-		
+	void animate()
+	{
 		animator.SetBool ("grounded", controller.isGrounded);
 		animator.SetFloat("speed", (Mathf.Abs(Input.GetAxis ("Vertical"))));
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "Enemy") {
+			this.enabled = false;
+			animator.SetBool ("dead",true);
+			FindObjectOfType<GameManager> ().endGame ();
+		}
 	}
 	// Update is called once per frame
 	void Update ()
@@ -33,6 +42,7 @@ public class PlayerController : MonoBehaviour
 				moveDirection.y = jumpSpeed;
 			}
 		}
+
 		moveDirection.y -= gravity * Time.deltaTime;
 		animate ();
 		controller.Move(moveDirection * Time.deltaTime);

@@ -29,11 +29,8 @@ public class GameManager : MonoBehaviour {
 	public void restartGame(){
 		SceneManager.LoadScene ("GameOver");
 	}
-
-
-
+		
 	public void endGame(){
-		Debug.Log ("Game Over");
 		Invoke ("restartGame", restartDelay);
 	}
 
