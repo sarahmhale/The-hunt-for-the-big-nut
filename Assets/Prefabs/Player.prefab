@@ -390,7 +390,6 @@ GameObject:
   - component: {fileID: 20955818391501270}
   - component: {fileID: 124952338583989120}
   - component: {fileID: 81387688296681250}
-  - component: {fileID: 114216018873932974}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -982,22 +981,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114216018873932974
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1808498748041332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2199f26c016d4573ab31d141579cb00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 4
-  scrollSensitivity: 2
-  orbitSpeed: 10
-  scrollSpeed: 6
-  cameraDisabled: 0
 --- !u!114 &114764409543576300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1009,12 +992,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc6807d69092428d85201d52201ac93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  jumpForce: 20
-  gravityScale: 5
+  speed: 6
+  jumpSpeed: 8
+  gravity: 20
   animator: {fileID: 95478817655477650}
-  rotateSpeed: 30
-  pivot: {fileID: 4643599058750360}
 --- !u!124 &124952338583989120
 Behaviour:
   m_ObjectHideFlags: 1

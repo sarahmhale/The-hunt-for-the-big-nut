@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 	private Vector3 moveDirection = Vector3.zero;
 	public Animator animator;
 	private CharacterController controller;
+	public AudioSource gameOver;
 
 
 	// Use this for initialization
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (other.tag == "Enemy") {
 			this.enabled = false;
+			gameOver.Play ();
 			animator.SetBool ("dead",true);
 			FindObjectOfType<GameManager> ().endGame ();
 		}
